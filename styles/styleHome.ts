@@ -5,17 +5,17 @@ export const StyledHomeContainer = styled.div`
     img{
         width: 100%;
         height: auto;
-        display: block; 
+        display: block
     }
 `
 
-export const Title = styled.h3`
+export const Title = styled.h2` 
     position: absolute;
     top: 320px;
     left: 466px;
     width: 509px;
+    text-align: center;
     font-size: 32px;
     font-weight: 700;
     color: #fff;
-    text-align: center;
 `

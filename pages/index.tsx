@@ -1,9 +1,11 @@
-import HomePage from "./HomePage/HomePage"
+import React from "react"
+import { Title, StyledHomeContainer  } from "../styles/styleHome"
 
 export default function Home() {
   return (
-    <>
-      <HomePage />
-    </>
+    <StyledHomeContainer>
+        <img src="/images/pokemon-hero.jpg" alt="image-pokemon-hero" />
+        <Title>Cuidamos bem do seu pokémon, para ele cuidar bem de você</Title>
+    </StyledHomeContainer>
   )
 }

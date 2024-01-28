@@ -85,12 +85,18 @@ export const RightContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 30px;
+    a {
+      text-decoration: none;
+    }
     p{
         color: #000;
         font-size: 14px;
         font-weight: 400;
+        text-decoration: none;
+        cursor: pointer;
     }
     div{
+        cursor: pointer;
         width: 172px;
         height: 42px;
         padding: 12px 24px;

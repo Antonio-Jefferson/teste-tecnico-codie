@@ -3,8 +3,6 @@ import styled from 'styled-components';
 export const StyledFooter = styled.footer`
     width: 100%;
     height: 72px;
-    position: fixed;
-    bottom: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
