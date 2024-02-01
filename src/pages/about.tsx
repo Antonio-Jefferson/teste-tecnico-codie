@@ -5,7 +5,7 @@ import { Container, Main } from "../styles/styleAbout";
 export default function AboutPage(){
     return (
         <>
-            <HeaderNavegation/>
+            <HeaderNavegation page="Quem Somos" title="Quem Somos" description="A maior rede de tratamento pokémon."/>
             <Container>
                 <Main>
                     <h1>O Centro Pokémon</h1>

@@ -28,6 +28,21 @@ export const expandedLogoAnimation = keyframes`
     background-color: #E40F0F;
   }
 `;
+export const ReducedLogoAnimation = keyframes`
+  from {
+    width: 259px;
+    height: 61px;
+    border-radius: 50px;
+    padding: 14px 14px ;
+    background-color: #E40F0F;
+   
+  }
+  to {
+    width: 61px;
+    padding: 14px 14px ;
+    background-color: #E40F0F;
+  }
+`
 
 export const fadeInAnimation = keyframes`
   from {
@@ -38,8 +53,24 @@ export const fadeInAnimation = keyframes`
   }
 `;
 
+export const inAnimation = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
 export const LogoContainer = styled.div`
   cursor: pointer;
+  .ReducerdLogo {
+    animation: ${ReducedLogoAnimation} 1.5s forwards;
+  }
+
+  .logo-text {
+      animation: ${inAnimation} 0.8s forwards;
+    }
 
   &:hover {
     width: 259px;
