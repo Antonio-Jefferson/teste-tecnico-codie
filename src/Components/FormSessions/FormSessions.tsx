@@ -1,26 +1,33 @@
 import React, { ChangeEvent } from 'react';
 import { Session } from "./style";
-import { City, Region } from '../../@types/types';
-import { UseFormRegister } from 'react-hook-form';
+import { City, FormData, Region } from '../../@types/types';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 interface FormSessionsProps {
-    register: any,
+    register: UseFormRegister<FormData>,
     fetchCities: (regionUrl: string) => void,
     region: Region[],
     cities: City[],
+    errors: FieldErrors<FormData>
   };
 
-export default function FormSessions({ register, fetchCities, region, cities}: FormSessionsProps){
+export default function FormSessions({ register, fetchCities, region, cities, errors}: FormSessionsProps){
  return(
     <>
         <Session>
             <div>
                 <label>Nome</label>
                 <input id="Nome"  {...register("firstName")} placeholder="Digite seu nome" />
+                {errors.firstName && (
+                    <p>{errors.firstName.message}</p>
+                )}
             </div>
             <div>
                 <label>Sobrenome</label>
                 <input id='Sobrenome' {...register("lastName")} placeholder="Digite seu Sobrenome" />
+                {errors.lastName && (
+                    <p>{errors.lastName.message}</p>
+                )}
             </div>
         </Session>
         <Session>
@@ -41,6 +48,9 @@ export default function FormSessions({ register, fetchCities, region, cities}: F
                         </option>
                     ))}
                 </select>
+                {errors.region && (
+                    <p>{errors.region.message}</p>
+                )}
             </div>
             <div>
                 <label>Cidade</label>
@@ -52,6 +62,9 @@ export default function FormSessions({ register, fetchCities, region, cities}: F
                     </option>
                     ))}
                 </select>
+                {errors.city && (
+                    <span>{errors.city.message}</span>
+                )}
             </div>
         </Session>
     </>

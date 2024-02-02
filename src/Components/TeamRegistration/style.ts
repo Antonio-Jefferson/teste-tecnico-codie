@@ -16,6 +16,11 @@ export const SessionRegisterTeam = styled.div`
     }
     div{
         margin-bottom: 32px;
+        p{
+            font-size: 14px;
+            color: red;
+            font-weight: 400;
+        }
     }
     span{
         font-size: 12px;

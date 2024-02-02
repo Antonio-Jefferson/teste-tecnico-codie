@@ -1,15 +1,17 @@
 import React, { ChangeEvent } from 'react';
 import { Session } from './style';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { FormData } from '../../@types/types';
 
 interface DateTimeSelectionProps {
-    register: any; 
+    register: UseFormRegister<FormData>; 
     handleDateChange: (event: ChangeEvent<HTMLSelectElement>) => void;
     dates: string[]; 
-    hours: string[]; 
+    hours: string[];
+    errors: FieldErrors<FormData> 
   }
 
-export default function DateTimeSelection({ register, handleDateChange, dates, hours }: DateTimeSelectionProps){
+export default function DateTimeSelection({ errors, register, handleDateChange, dates, hours }: DateTimeSelectionProps){
     return(
         <Session>
             <div>
@@ -23,6 +25,9 @@ export default function DateTimeSelection({ register, handleDateChange, dates, h
                             </option>
                         ))}
                     </select>
+                    {errors.appointmentDate && (
+                        <p>{errors.appointmentDate.message}</p>
+                    )}
                 </div>
             </div>
             <div>
@@ -36,6 +41,9 @@ export default function DateTimeSelection({ register, handleDateChange, dates, h
                         </option>
                         ))}
                     </select> 
+                    {errors.appointmentTime && (
+                        <p>{errors.appointmentTime.message}</p>
+                    )}
                 </div>
             </div>
         </Session>

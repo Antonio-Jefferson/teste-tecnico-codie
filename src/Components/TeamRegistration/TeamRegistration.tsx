@@ -1,16 +1,18 @@
 import React from 'react';
 import { SessionRegisterTeam } from './style';
-import { Pokemon } from '../../@types/types';
+import { FormData, Pokemon } from '../../@types/types';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 interface TeamRegistrationProps {
-    register: any,
+    register: UseFormRegister<FormData>,
     team: { id: number; pokemon: string }[],
     handleAddPokemon: () => void,
     handlePokemonChange: (index: number, value: string) => void,
     pokemons: Pokemon[]
+    errors: FieldErrors<FormData>
   }
 
-export default function TeamRegistration({register, team, handleAddPokemon, handlePokemonChange, pokemons }: TeamRegistrationProps) {
+export default function TeamRegistration({errors, register, team, handleAddPokemon, handlePokemonChange, pokemons }: TeamRegistrationProps) {
     return(
         <SessionRegisterTeam>
             <h2>Cadastre seu time</h2>
@@ -31,6 +33,9 @@ export default function TeamRegistration({register, team, handleAddPokemon, hand
                             </option>
                         ))}
                         </select>
+                        {errors.pokemons && (
+                            <p>{errors.pokemons.message}</p>
+                        )}
                     </div>
                 </div>
             ))}

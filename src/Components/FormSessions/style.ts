@@ -36,7 +36,12 @@ export const Session = styled.div`
            border: 1px solid #D5D5D5;
            border-radius: 8px;
            color:#747474 ;
-    }
+        }
+        p{
+            font-size: 14px;
+            color: red;
+            font-weight: 400;
+        }
         
     }
 `

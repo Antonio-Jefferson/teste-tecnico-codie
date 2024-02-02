@@ -34,16 +34,18 @@ export default function Form(){
 
 
     const schema = Yup.object().shape({
-        fitName: Yup.string().required('Campo obrigatório'),
+        firstName: Yup.string().required('Campo obrigatório'),
         lastName: Yup.string().required('Campo obrigatório'),
         region: Yup.string().required('Campo obrigatório'),
         city: Yup.string().required('Campo obrigatório'),
-        pokemons: Yup.string().required('Campo obrigatório'),
+        pokemons: Yup.array().required('Campo obrigatório').min(1, 'Selecione pelo menos um Pokémon'),
         appointmentDate: Yup.string().required('Campo obrigatório'),
         appointmentTime: Yup.string().required('Campo obrigatório'),
     });
 
-    const { handleSubmit, setValue, register, formState: { errors } } = useForm<FormData>();
+    const { handleSubmit, setValue, register, formState: { errors } } = useForm<FormData>({ 
+      resolver: yupResolver(schema)
+    });
 
       const fetchRegioes = async () => {
             try {
@@ -137,10 +139,8 @@ export default function Form(){
       }, [isAppointmentSuccessful]);
 
       const onSubmit: SubmitHandler<FormData> = async (data) => {
-        console.log("Formulário enviado:", data);
-
         try {
-          await api.saveFormData(data).then((res) => {
+            await api.saveFormData(data).then((res) => {
             setIsAppointmentSuccessful((prev) => !prev);
             setMessage(`Seu agendamento para dia ${data.appointmentDate} às ${data.appointmentTime},
                         para ${data.pokemons.length} pokémons foi realizado com sucesso.`);
@@ -150,7 +150,7 @@ export default function Form(){
           });
     
         } catch (error) {
-          console.log("Erro ao enviar dados:", error);
+          console.log({error})
           setIsAppointmentSuccessful((prev) => !prev);
           setMessage("Houve um erro ao agendar. Tente novamente.");
           setImg('../../warning.svg');
@@ -167,11 +167,12 @@ export default function Form(){
                         <FormSessions
                             register={register}
                             fetchCities={fetchCities}
+                            errors={errors}
                             region={region}
                             cities={cities}
                         />
-                        <TeamRegistration  register={register} team={team} handleAddPokemon={handleAddPokemon} handlePokemonChange={handlePokemonChange} pokemons={pokemons} />
-                        <DateTimeSelection register={register} handleDateChange={handleDateChange} dates={dates} hours={hours} />
+                        <TeamRegistration errors={errors}  register={register} team={team} handleAddPokemon={handleAddPokemon} handlePokemonChange={handlePokemonChange} pokemons={pokemons} />
+                        <DateTimeSelection errors={errors} register={register} handleDateChange={handleDateChange} dates={dates} hours={hours} />
                         <Line/>
                         <PriceSummary teamLength={team.length} price={price} generationRate={generationRate} />
                         <SubmitButton  price={price} generationRate={generationRate} />
